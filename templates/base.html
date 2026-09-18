@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}careerscraper{% endblock %}</title>
+  <style>
+    :root {
+      --bg: #fbfbfa; --panel: #ffffff; --border: #e3e3e0; --text: #1d1d1b;
+      --muted: #6b6b66; --accent: #1a56db; --accent-soft: #eaf0fd; --chip: #f1f1ee;
+      --shadow: 0 1px 2px rgba(0,0,0,.05);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #16171a; --panel: #1e2024; --border: #313338; --text: #eceef1;
+        --muted: #9a9ea6; --accent: #7aa2f7; --accent-soft: #232936; --chip: #272a30;
+        --shadow: none;
+      }
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; background: var(--bg); color: var(--text);
+      font: 15px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .wrap { max-width: 1180px; margin: 0 auto; padding: 24px 20px 60px; }
+    header.top {
+      display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap;
+      padding-bottom: 16px; border-bottom: 1px solid var(--border); margin-bottom: 20px;
+    }
+    header.top h1 { font-size: 20px; margin: 0; letter-spacing: -.01em; }
+    header.top .meta { color: var(--muted); font-size: 13px; }
+    header.top .meta a { color: var(--muted); }
+    .panel {
+      background: var(--panel); border: 1px solid var(--border);
+      border-radius: 10px; box-shadow: var(--shadow);
+    }
+    form.filters { padding: 14px; margin-bottom: 18px; }
+    .row { display: flex; gap: 10px; flex-wrap: wrap; align-items: flex-end; }
+    .field { display: flex; flex-direction: column; gap: 4px; }
+    .field label { font-size: 11px; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); }
+    input[type=text], input[type=number], input[type=date], select {
+      background: var(--bg); color: var(--text); border: 1px solid var(--border);
+      border-radius: 7px; padding: 7px 9px; font: inherit; font-size: 14px; min-width: 130px;
+    }
+    input#q { min-width: 260px; }
+    button, .btn {
+      background: var(--accent); color: #fff; border: 0; border-radius: 7px;
+      padding: 8px 14px; font: inherit; font-weight: 500; cursor: pointer;
+    }
+    .btn.ghost { background: var(--chip); color: var(--text); }
+    /* Star sits after the button rule on purpose - it must not inherit the accent fill. */
+    .star {
+      background: none; border: 0; padding: 0 3px; cursor: pointer; font-size: 18px;
+      line-height: 1; color: var(--border);
+    }
+    .star:hover { color: #c9a227; }
+    .star.on { color: #e8b923; }
+    .star:disabled { opacity: .45; cursor: default; }
+    .star.failed { color: #c0392b; }
+    th.star-col, td.star-col { width: 1%; padding-right: 0; }
+    .check { display: flex; align-items: center; gap: 6px; font-size: 13px; color: var(--muted); }
+    table { width: 100%; border-collapse: collapse; }
+    .scroll { overflow-x: auto; }
+    th {
+      text-align: left; font-size: 11px; text-transform: uppercase; letter-spacing: .04em;
+      color: var(--muted); font-weight: 600; padding: 10px 12px; border-bottom: 1px solid var(--border);
+      white-space: nowrap;
+    }
+    td { padding: 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+    tr:last-child td { border-bottom: 0; }
+    tr:hover td { background: var(--accent-soft); }
+    .title { font-weight: 550; }
+    .sub { color: var(--muted); font-size: 12.5px; margin-top: 3px; }
+    .chips { display: flex; gap: 4px; flex-wrap: wrap; margin-top: 5px; }
+    .chip {
+      background: var(--chip); border-radius: 20px; padding: 2px 9px;
+      font-size: 11.5px; color: var(--muted); white-space: nowrap;
+    }
+    .chip.req { color: var(--text); }
+    .nowrap { white-space: nowrap; }
+    .num { font-variant-numeric: tabular-nums; }
+    .closed { color: var(--muted); font-style: italic; }
+    .empty { padding: 40px 20px; text-align: center; color: var(--muted); }
+    .pager { display: flex; gap: 10px; align-items: center; justify-content: center; margin-top: 20px; }
+    .snippet {
+      background: var(--chip); border-left: 3px solid var(--accent); border-radius: 0 6px 6px 0;
+      padding: 10px 12px; font-size: 13px; color: var(--muted); margin: 4px 0 0;
+    }
+    dl.facts { display: grid; grid-template-columns: max-content 1fr; gap: 6px 18px; margin: 0; }
+    dl.facts dt { color: var(--muted); font-size: 12.5px; }
+    dl.facts dd { margin: 0; }
+    pre.desc {
+      white-space: pre-wrap; word-wrap: break-word; font: inherit;
+      margin: 0; padding: 18px; line-height: 1.65;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="top">
+      <h1><a href="{{ url_for('index') }}" style="color:inherit">careerscraper</a></h1>
+      {% block header_meta %}{% endblock %}
+    </header>
+    {% block content %}{% endblock %}
+  </div>
+  <script>
+    // One delegated handler covers the list rows and the detail page alike.
+    document.addEventListener("click", async (event) => {
+      const button = event.target.closest("[data-fav]");
+      if (!button) return;
+      button.disabled = true;
+      button.classList.remove("failed");
+      try {
+        const response = await fetch(button.dataset.fav, { method: "POST" });
+        if (!response.ok) throw new Error(response.status);
+        const data = await response.json();
+        button.classList.toggle("on", data.favorite);
+        button.setAttribute("aria-pressed", data.favorite ? "true" : "false");
+        button.title = data.favorite ? "Saved - click to remove" : "Save this job";
+        document.querySelectorAll("[data-fav-total]").forEach((el) => {
+          el.textContent = data.total;
+        });
+      } catch (error) {
+        button.classList.add("failed");
+        button.title = "Could not save. Is the app still running?";
+      } finally {
+        button.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>

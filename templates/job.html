@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block title %}{{ job.title }} · {{ job.company }}{% endblock %}
+
+{% block header_meta %}
+  <span class="meta"><a href="{{ url_for('index') }}">← all jobs</a></span>
+{% endblock %}
+
+{% block content %}
+<div class="panel" style="padding:20px; margin-bottom:18px">
+  <div class="row" style="justify-content:space-between; align-items:flex-start">
+    <div>
+      <h2 style="margin:0 0 4px; font-size:19px">{{ job.title }}</h2>
+      <div class="sub">
+        {{ job.company }}
+        {% if job.department %} · {{ job.department }}{% endif %}
+        {% if job.employment_type %} · {{ job.employment_type }}{% endif %}
+        {% if not job.is_open %} · <span class="closed">closed {{ (job.closed_at or '')[:10] }}</span>{% endif %}
+      </div>
+    </div>
+    <div class="row" style="align-items:center; gap:8px">
+      <button type="button" class="star {{ 'on' if starred }}" style="font-size:24px"
+              data-fav="{{ url_for('favorite', job_id=job.id) }}"
+              aria-pressed="{{ 'true' if starred else 'false' }}"
+              aria-label="Save this job"
+              title="{{ 'Saved - click to remove' if starred else 'Save this job' }}">★</button>
+      <a class="btn" href="{{ url_for('apply', job_id=job.id) }}" target="_blank" rel="noopener noreferrer">
+        Apply on {{ job.company }} careers ↗
+      </a>
+    </div>
+  </div>
+
+  <hr style="border:0; border-top:1px solid var(--border); margin:16px 0">
+
+  <dl class="facts">
+    <dt>Location</dt><dd>{{ job.location or '—' }}</dd>
+    <dt>Work mode</dt><dd>{{ job.work_mode or '—' }}</dd>
+    <dt>Experience</dt><dd>{{ job | exp }}</dd>
+    {% if job.education %}<dt>Education</dt><dd>{{ job.education }}</dd>{% endif %}
+    {% set req = job.skills_required | skills %}
+    {% if req %}
+    <dt>Skills required</dt>
+    <dd><div class="chips">{% for skill in req %}<span class="chip req">{{ skill }}</span>{% endfor %}</div></dd>
+    {% endif %}
+    {% set pref = job.skills_preferred | skills %}
+    {% if pref %}
+    <dt>Nice to have</dt>
+    <dd><div class="chips">{% for skill in pref %}<span class="chip">{{ skill }}</span>{% endfor %}</div></dd>
+    {% endif %}
+    {% if job.posted_date %}<dt>Posted</dt><dd>{{ job.posted_date }}</dd>{% endif %}
+    <dt>First seen</dt><dd>{{ (job.first_seen or '')[:16] | replace('T', ' ') }}</dd>
+    <dt>Last seen</dt><dd>{{ (job.last_seen or '')[:16] | replace('T', ' ') }}</dd>
+    <dt>Source</dt><dd>{{ job.source }}</dd>
+    {% if job.filter_reason %}<dt>Filtered because</dt><dd>{{ job.filter_reason }}</dd>{% endif %}
+    <dt>URL</dt><dd><a href="{{ job.job_url }}" target="_blank" rel="noopener noreferrer">{{ job.job_url }}</a></dd>
+  </dl>
+
+  {% if job.exp_snippet %}
+    <p class="snippet"><strong>Why {{ job | exp }}:</strong> …{{ job.exp_snippet }}…</p>
+  {% endif %}
+</div>
+
+<div class="panel">
+  <pre class="desc">{{ job.description or 'No description stored for this job.' }}</pre>
+</div>
+{% endblock %}

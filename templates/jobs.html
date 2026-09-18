@@ -1,0 +1,154 @@
+{% extends "base.html" %}
+{% block title %}{{ total }} jobs · careerscraper{% endblock %}
+
+{% block header_meta %}
+  <span class="meta">{{ total }} matching · {{ stored }} open in database ·
+    <a href="{{ url_for('index', favorites=1) }}">★ <span data-fav-total>{{ favorites_total }}</span> saved</a>
+  </span>
+{% endblock %}
+
+{% block content %}
+<form class="filters panel" method="get" action="{{ url_for('index') }}">
+  <div class="row">
+    <div class="field">
+      <label for="q">Search</label>
+      <input type="text" id="q" name="q" value="{{ query.get('q', '') }}"
+             placeholder="title, company, skill or description…" autofocus>
+    </div>
+    <div class="field">
+      <label for="company">Company</label>
+      <select id="company" name="company">
+        <option value="">All</option>
+        {% for name in companies %}
+          <option value="{{ name }}" {{ 'selected' if name in (selected.companies or []) }}>{{ name }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="field">
+      <label for="skill">Skill</label>
+      <select id="skill" name="skill">
+        <option value="">Any</option>
+        {% for name, count in skills %}
+          <option value="{{ name }}" {{ 'selected' if selected.skill == name }}>{{ name }} ({{ count }})</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="field">
+      <label for="location">Location</label>
+      <input type="text" id="location" name="location" value="{{ query.get('location', '') }}"
+             placeholder="bengaluru">
+    </div>
+    <div class="field">
+      <label for="max_exp">Max min-exp</label>
+      <input type="number" id="max_exp" name="max_exp" min="0" max="30" style="min-width:110px"
+             value="{{ query.get('max_exp', '') }}">
+    </div>
+    <div class="field">
+      <label for="work_mode">Mode</label>
+      <select id="work_mode" name="work_mode">
+        <option value="">Any</option>
+        {% for mode in modes %}
+          <option value="{{ mode }}" {{ 'selected' if selected.work_mode == mode }}>{{ mode }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="field">
+      <label for="since">First seen after</label>
+      <input type="date" id="since" name="since" value="{{ query.get('since', '') }}">
+    </div>
+    <div class="field">
+      <label for="sort">Sort</label>
+      <select id="sort" name="sort">
+        {% for key, text in [('new', 'Newest found'), ('exp', 'Lowest experience'),
+                             ('company', 'Company'), ('title', 'Title'), ('posted', 'Posted date')] %}
+          <option value="{{ key }}" {{ 'selected' if selected.sort == key }}>{{ text }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <label class="check">
+      <input type="checkbox" name="include_closed" value="1"
+             {{ 'checked' if selected.include_closed }}> closed too
+    </label>
+    <label class="check">
+      <input type="checkbox" name="favorites" value="1"
+             {{ 'checked' if favorites_only }}> ★ saved only
+    </label>
+    <button type="submit">Filter</button>
+    <a class="btn ghost" href="{{ url_for('index') }}">Reset</a>
+  </div>
+</form>
+
+<div class="panel scroll">
+  {% if jobs %}
+  <table>
+    <thead>
+      <tr>
+        <th class="star-col"><span title="Saved jobs">★</span></th>
+        <th>Role</th>
+        <th>Location</th>
+        <th class="nowrap">Experience</th>
+        <th>Mode</th>
+        <th class="nowrap">First seen</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for job in jobs %}
+      {% set is_starred = job.key in starred %}
+      <tr>
+        <td class="star-col">
+          <button type="button" class="star {{ 'on' if is_starred }}"
+                  data-fav="{{ url_for('favorite', job_id=job.id) }}"
+                  aria-pressed="{{ 'true' if is_starred else 'false' }}"
+                  aria-label="Save {{ job.title }}"
+                  title="{{ 'Saved - click to remove' if is_starred else 'Save this job' }}">★</button>
+        </td>
+        <td>
+          <a class="title" href="{{ url_for('apply', job_id=job.id) }}" target="_blank"
+             rel="noopener noreferrer" title="Opens {{ job.company }}'s careers page">
+            {{ job.title }} ↗
+          </a>
+          <div class="sub">
+            {{ job.company }}{% if job.department %} · {{ job.department }}{% endif %}
+            · <a href="{{ url_for('job', job_id=job.id) }}">details</a>
+            {% if not job.is_open %}· <span class="closed">closed</span>{% endif %}
+          </div>
+          {% set req = job.skills_required | skills %}
+          {% set pref = job.skills_preferred | skills %}
+          {% if req or pref %}
+          <div class="chips">
+            {% for skill in req[:8] %}<span class="chip req">{{ skill }}</span>{% endfor %}
+            {% for skill in pref[:4] %}<span class="chip">+{{ skill }}</span>{% endfor %}
+          </div>
+          {% endif %}
+        </td>
+        <td>{{ job.location or '—' }}</td>
+        <td class="nowrap num">{{ job | exp }}</td>
+        <td>{{ job.work_mode or '—' }}</td>
+        <td class="nowrap num">{{ (job.first_seen or '')[:10] }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+    <p class="empty">
+      {% if favorites_only %}No saved jobs match these filters — star a job to keep it here.{% else %}Nothing matches these filters.{% endif %}<br>
+      {% if not stored %}The database is empty — run <code>main.py</code> first.{% endif %}
+    </p>
+  {% endif %}
+</div>
+
+{% if pages > 1 %}
+<div class="pager">
+  {% set base = query.to_dict() %}
+  {% if page > 1 %}
+    {% set _ = base.update({'page': page - 1}) %}
+    <a class="btn ghost" href="{{ url_for('index', **base) }}">← Previous</a>
+  {% endif %}
+  <span class="meta">Page {{ page }} of {{ pages }}</span>
+  {% if page < pages %}
+    {% set _ = base.update({'page': page + 1}) %}
+    <a class="btn ghost" href="{{ url_for('index', **base) }}">Next →</a>
+  {% endif %}
+</div>
+{% endif %}
+{% endblock %}

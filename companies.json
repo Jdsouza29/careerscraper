@@ -1,0 +1,1326 @@
+{
+  "_readme": "Curated registry. Every enabled entry was probed against the live backend and returned real jobs before being added (count in _verified). Ask Claude to 'add <company>' and it will inspect the careers page, identify the backend, verify it returns jobs, and append a working entry. adapter is one of: greenhouse, lever, ashby, workday, smartrecruiters, eightfold, oracle_ce, custom_json, custom_html.",
+
+  "companies": [
+    {
+      "name": "Coinbase",
+      "careers_url": "https://www.coinbase.com/careers/positions",
+      "adapter": "greenhouse",
+      "params": { "board_token": "coinbase" },
+      "_verified": "161 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Rubrik",
+      "careers_url": "https://www.rubrik.com/company/careers",
+      "adapter": "greenhouse",
+      "params": { "board_token": "rubrik" },
+      "_verified": "107 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Atlassian",
+      "careers_url": "https://www.atlassian.com/company/careers/all-jobs",
+      "adapter": "custom_json",
+      "_note": "Atlassian runs its own listings endpoint in front of iCIMS. Description is split across overview/responsibilities/qualifications, mapped as sections so 'Qualifications' feeds the required-skills bucket.",
+      "params": {
+        "url": "https://www.atlassian.com/endpoint/careers/listings",
+        "fields": {
+          "title": "title",
+          "location": "locations",
+          "department": "category",
+          "external_id": "id",
+          "job_url": "portalJobPost.portalUrl",
+          "apply_url": "applyUrl",
+          "posted_date": "portalJobPost.updatedDate"
+        },
+        "sections": {
+          "Overview": "overview",
+          "Responsibilities": "responsibilities",
+          "Qualifications": "qualifications"
+        }
+      },
+      "_verified": "236 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Cloudera",
+      "careers_url": "https://cloudera.wd5.myworkdayjobs.com/External_Career",
+      "adapter": "workday",
+      "params": {
+        "host": "cloudera.wd5.myworkdayjobs.com",
+        "tenant": "cloudera",
+        "site": "External_Career",
+        "max_jobs": 150
+      },
+      "_verified": "94 jobs",
+      "enabled": true
+    },
+
+    {
+      "name": "Stripe",
+      "careers_url": "https://stripe.com/jobs/search",
+      "adapter": "greenhouse",
+      "params": { "board_token": "stripe" },
+      "_verified": "550 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Datadog",
+      "careers_url": "https://careers.datadoghq.com/all-jobs/",
+      "adapter": "greenhouse",
+      "params": { "board_token": "datadog" },
+      "_verified": "429 jobs",
+      "enabled": true
+    },
+    {
+      "name": "MongoDB",
+      "careers_url": "https://www.mongodb.com/company/careers/jobs",
+      "adapter": "greenhouse",
+      "params": { "board_token": "mongodb" },
+      "_verified": "400 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Cloudflare",
+      "careers_url": "https://www.cloudflare.com/careers/jobs/",
+      "adapter": "greenhouse",
+      "params": { "board_token": "cloudflare" },
+      "_verified": "284 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Zscaler",
+      "careers_url": "https://www.zscaler.com/careers",
+      "adapter": "greenhouse",
+      "params": { "board_token": "zscaler" },
+      "_verified": "300 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Elastic",
+      "careers_url": "https://www.elastic.co/careers/",
+      "adapter": "greenhouse",
+      "params": { "board_token": "elastic" },
+      "_verified": "231 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Twilio",
+      "careers_url": "https://www.twilio.com/en-us/company/jobs",
+      "adapter": "greenhouse",
+      "params": { "board_token": "twilio" },
+      "_verified": "180 jobs",
+      "enabled": true
+    },
+    {
+      "name": "DoorDash",
+      "careers_url": "https://careersatdoordash.com/jobs/",
+      "adapter": "greenhouse",
+      "params": { "board_token": "doordashusa" },
+      "_verified": "473 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Airbnb",
+      "careers_url": "https://careers.airbnb.com/",
+      "adapter": "greenhouse",
+      "params": { "board_token": "airbnb" },
+      "_verified": "178 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Reddit",
+      "careers_url": "https://redditinc.com/careers",
+      "adapter": "greenhouse",
+      "params": { "board_token": "reddit" },
+      "_verified": "189 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Robinhood",
+      "careers_url": "https://careers.robinhood.com/",
+      "adapter": "greenhouse",
+      "params": { "board_token": "robinhood" },
+      "_verified": "128 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Figma",
+      "careers_url": "https://www.figma.com/careers/",
+      "adapter": "greenhouse",
+      "params": { "board_token": "figma" },
+      "_verified": "176 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Discord",
+      "careers_url": "https://discord.com/careers",
+      "adapter": "greenhouse",
+      "params": { "board_token": "discord" },
+      "_verified": "45 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Instacart",
+      "careers_url": "https://instacart.careers/current-openings/",
+      "adapter": "greenhouse",
+      "params": { "board_token": "instacart" },
+      "_verified": "121 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Toast",
+      "careers_url": "https://careers.toasttab.com/jobs",
+      "adapter": "greenhouse",
+      "params": { "board_token": "toast" },
+      "_verified": "293 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Affirm",
+      "careers_url": "https://www.affirm.com/careers",
+      "adapter": "greenhouse",
+      "params": { "board_token": "affirm" },
+      "_verified": "181 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Chime",
+      "careers_url": "https://careers.chime.com/",
+      "adapter": "greenhouse",
+      "params": { "board_token": "chime" },
+      "_verified": "67 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Grafana Labs",
+      "careers_url": "https://grafana.com/about/careers/",
+      "adapter": "greenhouse",
+      "params": { "board_token": "grafanalabs" },
+      "_verified": "143 jobs",
+      "enabled": true
+    },
+    {
+      "name": "ClickHouse",
+      "careers_url": "https://clickhouse.com/company/careers",
+      "adapter": "ashby",
+      "_note": "Moved off Greenhouse - the old board token now 404s. Ashby board token is 'clickhouse'.",
+      "params": { "board_token": "clickhouse" },
+      "_verified": "180 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Vercel",
+      "careers_url": "https://vercel.com/careers",
+      "adapter": "greenhouse",
+      "params": { "board_token": "vercel" },
+      "_verified": "81 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Airtable",
+      "careers_url": "https://airtable.com/careers",
+      "adapter": "greenhouse",
+      "params": { "board_token": "airtable" },
+      "_verified": "40 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Coursera",
+      "careers_url": "https://about.coursera.org/careers",
+      "adapter": "greenhouse",
+      "params": { "board_token": "coursera" },
+      "_verified": "20 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Udemy",
+      "careers_url": "https://about.udemy.com/careers/",
+      "adapter": "greenhouse",
+      "params": { "board_token": "udemy" },
+      "_verified": "12 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Postman",
+      "careers_url": "https://www.postman.com/company/careers/open-positions/",
+      "adapter": "greenhouse",
+      "params": { "board_token": "postman" },
+      "_verified": "111 jobs",
+      "enabled": true
+    },
+    {
+      "name": "GitLab",
+      "careers_url": "https://about.gitlab.com/jobs/all-jobs/",
+      "adapter": "greenhouse",
+      "params": { "board_token": "gitlab" },
+      "_verified": "185 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Databricks",
+      "careers_url": "https://www.databricks.com/company/careers/open-positions",
+      "adapter": "greenhouse",
+      "params": { "board_token": "databricks" },
+      "_verified": "799 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Harness",
+      "careers_url": "https://www.harness.io/company/careers",
+      "adapter": "greenhouse",
+      "params": { "board_token": "harnessinc" },
+      "_verified": "93 jobs",
+      "enabled": true
+    },
+    {
+      "name": "DevRev",
+      "careers_url": "https://devrev.ai/careers",
+      "adapter": "greenhouse",
+      "params": { "board_token": "devrev" },
+      "_verified": "42 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Tekion",
+      "careers_url": "https://tekion.com/careers",
+      "adapter": "ashby",
+      "_note": "Moved off Greenhouse - the old board token now 404s. Ashby board token is 'tekion'.",
+      "params": { "board_token": "tekion" },
+      "_verified": "107 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Netradyne",
+      "careers_url": "https://www.netradyne.com/company/careers",
+      "adapter": "greenhouse",
+      "params": { "board_token": "netradyne" },
+      "_verified": "27 jobs",
+      "enabled": true
+    },
+    {
+      "name": "PhonePe",
+      "careers_url": "https://www.phonepe.com/careers/job-openings/",
+      "adapter": "greenhouse",
+      "_status": "BLOCKED - the Greenhouse board token 'phonepe' now 404s and no replacement was found: the listing is client-side and the only backend hint is phonepe.darwinbox.in, for which there is no adapter. A failed fetch never closes jobs, so its stored rows went stale - clear them with --close-stale.",
+      "params": { "board_token": "phonepe" },
+      "enabled": false
+    },
+    {
+      "name": "Razorpay",
+      "careers_url": "https://razorpay.com/jobs/",
+      "adapter": "greenhouse",
+      "params": { "board_token": "razorpaysoftwareprivatelimited" },
+      "_verified": "27 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Groww",
+      "careers_url": "https://groww.in/careers",
+      "adapter": "greenhouse",
+      "params": { "board_token": "groww" },
+      "_verified": "9 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Jane Street",
+      "careers_url": "https://www.janestreet.com/join-jane-street/open-roles/",
+      "adapter": "greenhouse",
+      "params": { "board_token": "janestreet" },
+      "_verified": "226 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Tower Research Capital",
+      "careers_url": "https://www.tower-research.com/open-positions/",
+      "adapter": "greenhouse",
+      "params": { "board_token": "towerresearchcapital" },
+      "_verified": "74 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Pure Storage",
+      "careers_url": "https://www.purestorage.com/company/careers.html",
+      "adapter": "greenhouse",
+      "params": { "board_token": "purestorage" },
+      "_verified": "301 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Okta",
+      "careers_url": "https://www.okta.com/company/careers/",
+      "adapter": "greenhouse",
+      "params": { "board_token": "okta" },
+      "_verified": "347 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Samsara",
+      "careers_url": "https://www.samsara.com/company/careers/roles",
+      "adapter": "greenhouse",
+      "params": { "board_token": "samsara" },
+      "_verified": "297 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Dropbox",
+      "careers_url": "https://jobs.dropbox.com/all-jobs",
+      "adapter": "greenhouse",
+      "params": { "board_token": "dropbox" },
+      "_verified": "36 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Commvault",
+      "careers_url": "https://www.commvault.com/careers",
+      "adapter": "greenhouse",
+      "params": { "board_token": "commvault" },
+      "_verified": "73 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Druva",
+      "careers_url": "https://www.druva.com/about/careers",
+      "adapter": "greenhouse",
+      "params": { "board_token": "druva" },
+      "_verified": "27 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Cockroach Labs",
+      "careers_url": "https://www.cockroachlabs.com/careers/",
+      "adapter": "greenhouse",
+      "params": { "board_token": "cockroachlabs" },
+      "_verified": "26 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Neo4j",
+      "careers_url": "https://neo4j.com/careers/",
+      "adapter": "greenhouse",
+      "params": { "board_token": "neo4j" },
+      "_verified": "44 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Yugabyte",
+      "careers_url": "https://www.yugabyte.com/careers/",
+      "adapter": "greenhouse",
+      "params": { "board_token": "yugabyte" },
+      "_verified": "16 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Starburst",
+      "careers_url": "https://www.starburst.io/careers/",
+      "adapter": "greenhouse",
+      "params": { "board_token": "starburst" },
+      "_verified": "13 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Sumo Logic",
+      "careers_url": "https://www.sumologic.com/careers/",
+      "adapter": "greenhouse",
+      "params": { "board_token": "sumologic" },
+      "_verified": "21 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Anthropic",
+      "careers_url": "https://www.anthropic.com/careers",
+      "adapter": "greenhouse",
+      "params": { "board_token": "anthropic" },
+      "_verified": "394 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Scale AI",
+      "careers_url": "https://scale.com/careers",
+      "adapter": "greenhouse",
+      "params": { "board_token": "scaleai" },
+      "_verified": "216 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Block",
+      "careers_url": "https://block.xyz/careers/jobs",
+      "adapter": "greenhouse",
+      "_note": "Square, Cash App and Tidal all post under the one Block board.",
+      "params": { "board_token": "block" },
+      "_verified": "205 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Brex",
+      "careers_url": "https://www.brex.com/careers",
+      "adapter": "greenhouse",
+      "params": { "board_token": "brex" },
+      "_verified": "302 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Adyen",
+      "careers_url": "https://careers.adyen.com/vacancies",
+      "adapter": "greenhouse",
+      "params": { "board_token": "adyen" },
+      "_verified": "220 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Marqeta",
+      "careers_url": "https://www.marqeta.com/company/careers",
+      "adapter": "custom_html",
+      "_note": "The Greenhouse token now 404s; Marqeta serves its own list, server-rendered, whole board on one page. Each row is an <a> wrapping three cells: title, department, location. The description page has no dedicated container, so the detail selector grabs the page shell - nav and footer text comes along with it. Tailwind utility classes are the only hooks here, so a redesign will break these selectors.",
+      "params": {
+        "url": "https://www.marqeta.com/company/careers",
+        "item_selector": "a[href^='/careers/']",
+        "base_url": "https://www.marqeta.com",
+        "fields": {
+          "title": { "selector": "td:nth-of-type(1)" },
+          "department": { "selector": "td:nth-of-type(2)" },
+          "location": { "selector": "td:nth-of-type(3)" },
+          "job_url": { "selector": ".", "attr": "href" }
+        },
+        "detail": { "description_selector": "div.min-h-screen" }
+      },
+      "_verified": "40 jobs",
+      "enabled": true
+    },
+    {
+      "name": "SoFi",
+      "careers_url": "https://www.sofi.com/careers/",
+      "adapter": "greenhouse",
+      "params": { "board_token": "sofi" },
+      "_verified": "69 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Pinterest",
+      "careers_url": "https://www.pinterestcareers.com/jobs/",
+      "adapter": "greenhouse",
+      "params": { "board_token": "pinterest" },
+      "_verified": "220 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Lyft",
+      "careers_url": "https://www.lyft.com/careers",
+      "adapter": "greenhouse",
+      "params": { "board_token": "lyft" },
+      "_verified": "161 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Asana",
+      "careers_url": "https://asana.com/jobs/all",
+      "adapter": "greenhouse",
+      "params": { "board_token": "asana" },
+      "_verified": "144 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Flexport",
+      "careers_url": "https://www.flexport.com/careers/",
+      "adapter": "greenhouse",
+      "params": { "board_token": "flexport" },
+      "_verified": "152 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Duolingo",
+      "careers_url": "https://careers.duolingo.com/",
+      "adapter": "greenhouse",
+      "params": { "board_token": "duolingo" },
+      "_verified": "66 jobs",
+      "enabled": true
+    },
+    {
+      "name": "IMC Trading",
+      "careers_url": "https://www.imc.com/ap/careers/vacancies",
+      "adapter": "greenhouse",
+      "params": { "board_token": "imc" },
+      "_verified": "156 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Databento",
+      "careers_url": "https://databento.com/careers",
+      "adapter": "greenhouse",
+      "params": { "board_token": "databento" },
+      "_verified": "15 jobs",
+      "enabled": true
+    },
+
+    {
+      "name": "Tenable",
+      "careers_url": "https://www.tenable.com/careers",
+      "adapter": "greenhouse",
+      "params": { "board_token": "tenableinc" },
+      "_verified": "40 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Wiz",
+      "careers_url": "https://www.wiz.io/careers",
+      "adapter": "greenhouse",
+      "_note": "Board token is 'wizinc', not 'wiz'.",
+      "params": { "board_token": "wizinc" },
+      "_verified": "125 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Netskope",
+      "careers_url": "https://www.netskope.com/company/careers",
+      "adapter": "greenhouse",
+      "params": { "board_token": "netskope" },
+      "_verified": "138 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Abnormal Security",
+      "careers_url": "https://abnormal.ai/careers",
+      "adapter": "greenhouse",
+      "params": { "board_token": "abnormalsecurity" },
+      "_verified": "74 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Chainguard",
+      "careers_url": "https://www.chainguard.dev/careers",
+      "adapter": "greenhouse",
+      "params": { "board_token": "chainguard" },
+      "_verified": "83 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Tailscale",
+      "careers_url": "https://tailscale.com/careers",
+      "adapter": "greenhouse",
+      "params": { "board_token": "tailscale" },
+      "_verified": "71 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Cribl",
+      "careers_url": "https://cribl.io/careers/",
+      "adapter": "greenhouse",
+      "params": { "board_token": "cribl" },
+      "_verified": "63 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Axonius",
+      "careers_url": "https://www.axonius.com/careers",
+      "adapter": "greenhouse",
+      "params": { "board_token": "axonius" },
+      "_verified": "26 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Orca Security",
+      "careers_url": "https://orca.security/about/careers/",
+      "adapter": "greenhouse",
+      "params": { "board_token": "orcasecurity" },
+      "_verified": "13 jobs",
+      "enabled": true
+    },
+
+    {
+      "name": "Meesho",
+      "careers_url": "https://www.meesho.io/jobs",
+      "adapter": "lever",
+      "params": { "board_token": "meesho" },
+      "_verified": "46 jobs",
+      "enabled": true
+    },
+    {
+      "name": "CRED",
+      "careers_url": "https://careers.cred.club/",
+      "adapter": "lever",
+      "params": { "board_token": "cred" },
+      "_verified": "4 jobs",
+      "enabled": true
+    },
+
+    {
+      "name": "Sophos",
+      "careers_url": "https://www.sophos.com/en-us/company/careers",
+      "adapter": "lever",
+      "params": { "board_token": "sophos" },
+      "_verified": "111 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Sysdig",
+      "careers_url": "https://sysdig.com/careers/",
+      "adapter": "lever",
+      "params": { "board_token": "sysdig" },
+      "_verified": "11 jobs",
+      "enabled": true
+    },
+
+    {
+      "name": "Snowflake",
+      "careers_url": "https://careers.snowflake.com/us/en/search-results",
+      "adapter": "ashby",
+      "params": { "board_token": "snowflake" },
+      "_verified": "400 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Confluent",
+      "careers_url": "https://www.confluent.io/careers/",
+      "adapter": "ashby",
+      "params": { "board_token": "confluent" },
+      "_verified": "32 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Notion",
+      "careers_url": "https://www.notion.com/careers",
+      "adapter": "ashby",
+      "params": { "board_token": "notion" },
+      "_verified": "110 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Plaid",
+      "careers_url": "https://plaid.com/careers/",
+      "adapter": "ashby",
+      "params": { "board_token": "plaid" },
+      "_verified": "113 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Sentry",
+      "careers_url": "https://sentry.io/careers/",
+      "adapter": "ashby",
+      "params": { "board_token": "sentry" },
+      "_verified": "48 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Temporal",
+      "careers_url": "https://temporal.io/careers",
+      "adapter": "ashby",
+      "params": { "board_token": "temporal" },
+      "_verified": "57 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Linear",
+      "careers_url": "https://linear.app/careers",
+      "adapter": "ashby",
+      "params": { "board_token": "linear" },
+      "_verified": "23 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Atlan",
+      "careers_url": "https://atlan.com/careers/",
+      "adapter": "ashby",
+      "params": { "board_token": "atlan" },
+      "_verified": "5 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Sarvam AI",
+      "careers_url": "https://www.sarvam.ai/careers",
+      "adapter": "ashby",
+      "params": { "board_token": "sarvam" },
+      "_verified": "63 jobs",
+      "enabled": true
+    },
+    {
+      "name": "OpenAI",
+      "careers_url": "https://openai.com/careers/search/",
+      "adapter": "ashby",
+      "params": { "board_token": "openai" },
+      "_verified": "735 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Ramp",
+      "careers_url": "https://ramp.com/careers",
+      "adapter": "ashby",
+      "params": { "board_token": "ramp" },
+      "_verified": "123 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Vanta",
+      "careers_url": "https://www.vanta.com/careers",
+      "adapter": "ashby",
+      "params": { "board_token": "vanta" },
+      "_verified": "100 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Supabase",
+      "careers_url": "https://supabase.com/careers",
+      "adapter": "ashby",
+      "params": { "board_token": "supabase" },
+      "_verified": "57 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Modal",
+      "careers_url": "https://modal.com/careers",
+      "adapter": "ashby",
+      "params": { "board_token": "modal" },
+      "_verified": "31 jobs",
+      "enabled": true
+    },
+
+    {
+      "name": "NVIDIA",
+      "careers_url": "https://www.nvidia.com/en-in/about-nvidia/careers/",
+      "adapter": "workday",
+      "params": {
+        "host": "nvidia.wd5.myworkdayjobs.com",
+        "tenant": "nvidia",
+        "site": "NVIDIAExternalCareerSite",
+        "search_text": ["software engineer", "golang"],
+        "max_jobs": 200
+      },
+      "_verified": "2000 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Palo Alto Networks",
+      "careers_url": "https://jobs.paloaltonetworks.com/",
+      "adapter": "workday",
+      "params": {
+        "host": "paloaltonetworks.wd5.myworkdayjobs.com",
+        "tenant": "paloaltonetworks",
+        "site": "panwexternalcareers",
+        "search_text": ["software engineer", "backend"],
+        "max_jobs": 200
+      },
+      "_verified": "1363 jobs",
+      "enabled": true
+    },
+    {
+      "name": "CrowdStrike",
+      "careers_url": "https://crowdstrike.wd5.myworkdayjobs.com/crowdstrikecareers",
+      "adapter": "workday",
+      "params": {
+        "host": "crowdstrike.wd5.myworkdayjobs.com",
+        "tenant": "crowdstrike",
+        "site": "crowdstrikecareers",
+        "search_text": ["engineer"],
+        "max_jobs": 200
+      },
+      "_verified": "412 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Adobe",
+      "careers_url": "https://careers.adobe.com/us/en/search-results",
+      "adapter": "workday",
+      "params": {
+        "host": "adobe.wd5.myworkdayjobs.com",
+        "tenant": "adobe",
+        "site": "external_experienced",
+        "search_text": ["software engineer", "backend"],
+        "max_jobs": 200
+      },
+      "_verified": "836 jobs",
+      "enabled": true
+    },
+    {
+      "name": "HPE (incl. Juniper)",
+      "careers_url": "https://careers.hpe.com/juniper",
+      "adapter": "workday",
+      "_note": "Juniper Networks careers now redirect into HPE's Workday tenant after the acquisition.",
+      "params": {
+        "host": "hpe.wd5.myworkdayjobs.com",
+        "tenant": "hpe",
+        "site": "Jobsathpe",
+        "search_text": ["software engineer", "golang"],
+        "max_jobs": 200
+      },
+      "_verified": "1069 jobs",
+      "enabled": true
+    },
+    {
+      "name": "BrowserStack",
+      "careers_url": "https://www.browserstack.com/careers",
+      "adapter": "workday",
+      "params": {
+        "host": "browserstack.wd3.myworkdayjobs.com",
+        "tenant": "browserstack",
+        "site": "External",
+        "max_jobs": 100
+      },
+      "_verified": "36 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Fractal",
+      "careers_url": "https://fractal.wd1.myworkdayjobs.com/Careers",
+      "adapter": "workday",
+      "params": {
+        "host": "fractal.wd1.myworkdayjobs.com",
+        "tenant": "fractal",
+        "site": "Careers",
+        "max_jobs": 150
+      },
+      "_verified": "120 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Visa",
+      "careers_url": "https://visa.wd5.myworkdayjobs.com/Visa",
+      "adapter": "workday",
+      "_note": "usa.visa.com/careers is Akamai-protected and exposes nothing; the jobs themselves sit in this Workday tenant, site name 'Visa'.",
+      "params": {
+        "host": "visa.wd5.myworkdayjobs.com",
+        "tenant": "visa",
+        "site": "Visa",
+        "search_text": ["software engineer", "backend"],
+        "max_jobs": 200
+      },
+      "_verified": "792 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Cohesity",
+      "careers_url": "https://cohesity.wd5.myworkdayjobs.com/Cohesity_Careers",
+      "adapter": "workday",
+      "_note": "cohesity.com/careers renders its list client-side; the Workday site name is Cohesity_Careers. Includes the Veritas roles post-merger.",
+      "params": {
+        "host": "cohesity.wd5.myworkdayjobs.com",
+        "tenant": "cohesity",
+        "site": "Cohesity_Careers",
+        "max_jobs": 250
+      },
+      "_verified": "191 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Mastercard",
+      "careers_url": "https://careers.mastercard.com/us/en",
+      "adapter": "workday",
+      "params": {
+        "host": "mastercard.wd1.myworkdayjobs.com",
+        "tenant": "mastercard",
+        "site": "CorporateCareers",
+        "search_text": ["software engineer", "backend"],
+        "max_jobs": 200
+      },
+      "_verified": "1108 jobs",
+      "enabled": true
+    },
+    {
+      "name": "PayPal",
+      "careers_url": "https://paypal.wd1.myworkdayjobs.com/jobs",
+      "adapter": "workday",
+      "params": {
+        "host": "paypal.wd1.myworkdayjobs.com",
+        "tenant": "paypal",
+        "site": "jobs",
+        "max_jobs": 150
+      },
+      "_verified": "103 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Intel",
+      "careers_url": "https://jobs.intel.com/",
+      "adapter": "workday",
+      "params": {
+        "host": "intel.wd1.myworkdayjobs.com",
+        "tenant": "intel",
+        "site": "External",
+        "search_text": ["software engineer"],
+        "max_jobs": 200
+      },
+      "_verified": "671 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Micron",
+      "careers_url": "https://careers.micron.com/",
+      "adapter": "workday",
+      "params": {
+        "host": "micron.wd1.myworkdayjobs.com",
+        "tenant": "micron",
+        "site": "External",
+        "search_text": ["software engineer"],
+        "max_jobs": 200
+      },
+      "_verified": "2722 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Broadcom (incl. VMware)",
+      "careers_url": "https://broadcom.wd1.myworkdayjobs.com/External_Career",
+      "adapter": "workday",
+      "_note": "VMware roles moved into Broadcom's Workday tenant after the acquisition.",
+      "params": {
+        "host": "broadcom.wd1.myworkdayjobs.com",
+        "tenant": "broadcom",
+        "site": "External_Career",
+        "max_jobs": 400
+      },
+      "_verified": "362 jobs",
+      "enabled": true
+    },
+
+    {
+      "name": "Cisco",
+      "careers_url": "https://careers.cisco.com/global/en",
+      "adapter": "workday",
+      "_note": "careers.cisco.com is a Phenom front end, but every posting's applyUrl points at this Workday tenant, so the workday adapter reads it directly. Splunk roles show under the same careers site post-acquisition.",
+      "params": {
+        "host": "cisco.wd5.myworkdayjobs.com",
+        "tenant": "cisco",
+        "site": "Cisco_Careers",
+        "search_text": ["software engineer", "backend"],
+        "max_jobs": 200
+      },
+      "_verified": "1247 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Proofpoint",
+      "careers_url": "https://proofpoint.wd5.myworkdayjobs.com/proofpointcareers",
+      "adapter": "workday",
+      "params": {
+        "host": "proofpoint.wd5.myworkdayjobs.com",
+        "tenant": "proofpoint",
+        "site": "proofpointcareers",
+        "max_jobs": 200
+      },
+      "_verified": "143 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Qualys",
+      "careers_url": "https://www.qualys.com/careers/",
+      "adapter": "workday",
+      "params": {
+        "host": "qualys.wd5.myworkdayjobs.com",
+        "tenant": "qualys",
+        "site": "Careers",
+        "max_jobs": 200
+      },
+      "_verified": "157 jobs",
+      "enabled": true
+    },
+    {
+      "name": "F5",
+      "careers_url": "https://www.f5.com/company/careers",
+      "adapter": "workday",
+      "_note": "Workday tenant is 'ffive', not 'f5'.",
+      "params": {
+        "host": "ffive.wd5.myworkdayjobs.com",
+        "tenant": "ffive",
+        "site": "f5jobs",
+        "max_jobs": 250
+      },
+      "_verified": "224 jobs",
+      "enabled": true
+    },
+
+    {
+      "name": "Bosch",
+      "careers_url": "https://www.bosch.in/careers/",
+      "adapter": "smartrecruiters",
+      "params": {
+        "company_token": "BoschGroup",
+        "country": "in",
+        "q": "software engineer",
+        "max_jobs": 300
+      },
+      "_verified": "4715 jobs (550 in India)",
+      "enabled": true
+    },
+    {
+      "name": "Freshworks",
+      "careers_url": "https://www.freshworks.com/company/careers/",
+      "adapter": "smartrecruiters",
+      "params": { "company_token": "freshworks", "max_jobs": 200 },
+      "_verified": "152 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Canva",
+      "careers_url": "https://www.lifeatcanva.com/en/jobs/",
+      "adapter": "smartrecruiters",
+      "params": { "company_token": "canva", "max_jobs": 300 },
+      "_verified": "232 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Arista Networks",
+      "careers_url": "https://www.arista.com/en/careers",
+      "adapter": "smartrecruiters",
+      "params": { "company_token": "aristanetworks", "max_jobs": 300 },
+      "_verified": "232 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Wise",
+      "careers_url": "https://www.wise.jobs/",
+      "adapter": "smartrecruiters",
+      "params": { "company_token": "wise", "max_jobs": 300 },
+      "_verified": "401 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Swiggy",
+      "careers_url": "https://careers.swiggy.com/",
+      "adapter": "smartrecruiters",
+      "params": { "company_token": "swiggy", "max_jobs": 100 },
+      "_verified": "6 jobs (most Swiggy roles are not on this board)",
+      "enabled": true
+    },
+    {
+      "name": "Graviton Research Capital",
+      "careers_url": "https://www.gravitontrading.com/careers.html",
+      "adapter": "smartrecruiters",
+      "params": { "company_token": "graviton", "max_jobs": 50 },
+      "_verified": "2 jobs",
+      "enabled": true
+    },
+
+    {
+      "name": "NetApp",
+      "careers_url": "https://careers.netapp.com/",
+      "adapter": "eightfold",
+      "params": {
+        "host": "netapp.eightfold.ai",
+        "domain": "netapp.com",
+        "max_jobs": 300
+      },
+      "_verified": "297 jobs (92 in India)",
+      "enabled": true
+    },
+    {
+      "name": "Netflix",
+      "careers_url": "https://explore.jobs.netflix.net/careers",
+      "adapter": "eightfold",
+      "_note": "Was blocked until the eightfold adapter existed. Descriptions come from the per-job detail call, not the list.",
+      "params": {
+        "host": "explore.jobs.netflix.net",
+        "domain": "netflix.com",
+        "max_jobs": 300
+      },
+      "_verified": "482 jobs",
+      "enabled": true
+    },
+
+    {
+      "name": "American Express",
+      "careers_url": "https://careers.americanexpress.com/en/sites/CX_1/jobs",
+      "adapter": "oracle_ce",
+      "_note": "aexp.eightfold.ai answers but returns count=0 for every query - the real listing is Oracle Recruiting on pod egug.fa.us2.oraclecloud.com behind careers.americanexpress.com.",
+      "params": {
+        "host": "egug.fa.us2.oraclecloud.com",
+        "site_number": "CX_1",
+        "base_url": "https://careers.americanexpress.com",
+        "page_size": 200,
+        "max_jobs": 400
+      },
+      "_verified": "357 jobs",
+      "enabled": true
+    },
+
+    {
+      "name": "Fortinet",
+      "careers_url": "https://www.fortinet.com/corporate/careers/careers.html",
+      "adapter": "oracle_ce",
+      "_note": "fortinet.com/careers redirects straight into Oracle Recruiting on pod edel.fa.us2.oraclecloud.com, site CX_2001.",
+      "params": {
+        "host": "edel.fa.us2.oraclecloud.com",
+        "site_number": "CX_2001",
+        "base_url": "https://edel.fa.us2.oraclecloud.com/hcmUI/CandidateExperience",
+        "page_size": 200,
+        "max_jobs": 400
+      },
+      "_verified": "902 jobs",
+      "enabled": true
+    },
+
+    {
+      "name": "Nutanix",
+      "careers_url": "https://careers.nutanix.com/en/",
+      "adapter": "custom_html",
+      "_note": "careers.nutanix.com is a marketing shell; the board is Jobvite at jobs.jobvite.com/nutanix, which serves the whole list in one HTML table. Selectors are Jobvite's stable jv-* classes.",
+      "params": {
+        "url": "https://jobs.jobvite.com/nutanix",
+        "item_selector": "tr",
+        "base_url": "https://jobs.jobvite.com",
+        "fields": {
+          "title": { "selector": "td.jv-job-list-name a" },
+          "location": { "selector": "td.jv-job-list-location" },
+          "job_url": { "selector": "td.jv-job-list-name a", "attr": "href" }
+        },
+        "detail": { "description_selector": "div.jv-job-detail-description" }
+      },
+      "_verified": "100 jobs",
+      "enabled": true
+    },
+
+    {
+      "name": "Amazon",
+      "careers_url": "https://www.amazon.jobs/en/search",
+      "adapter": "custom_json",
+      "_note": "amazon.jobs exposes search.json. Filtering is by exact normalized_location strings - add cities to that list as needed. basic_qualifications/preferred_qualifications map cleanly onto the required/preferred skill buckets.",
+      "params": {
+        "url": "https://www.amazon.jobs/en/search.json",
+        "base_url": "https://www.amazon.jobs",
+        "query": {
+          "normalized_location[]": [
+            "Bengaluru, Karnataka, IND",
+            "Hyderabad, Telangana, IND",
+            "Chennai, Tamil Nadu, IND"
+          ],
+          "sort": "recent"
+        },
+        "list_path": "jobs",
+        "fields": {
+          "title": "title",
+          "location": "normalized_location",
+          "department": "job_category",
+          "employment_type": "job_schedule_type",
+          "external_id": "id_icims",
+          "job_url": "job_path",
+          "posted_date": "posted_date"
+        },
+        "sections": {
+          "Description": "description",
+          "Basic Qualifications": "basic_qualifications",
+          "Preferred Qualifications": "preferred_qualifications"
+        },
+        "pagination": {
+          "kind": "offset",
+          "param": "offset",
+          "size_param": "result_limit",
+          "size": 100,
+          "total_path": "hits",
+          "max_pages": 5
+        }
+      },
+      "_verified": "205 jobs for Bengaluru alone",
+      "enabled": true
+    },
+    {
+      "name": "Google",
+      "careers_url": "https://www.google.com/about/careers/applications/jobs/results/?location=India",
+      "adapter": "custom_html",
+      "_note": "Google's results page is server-rendered, so no browser is needed - but the class names are build hashes (QJPWVe, r0wTof, lLd3Je) and will break on a redesign. If Google fetches 0 jobs, re-check these selectors first.",
+      "params": {
+        "url": "https://www.google.com/about/careers/applications/jobs/results/?location=India&q=software%20engineer",
+        "item_selector": "li.lLd3Je",
+        "base_url": "https://www.google.com/about/careers/applications/",
+        "fields": {
+          "title": { "selector": "h3.QJPWVe" },
+          "location": { "selector": "span.r0wTof" },
+          "job_url": { "selector": "a[href^='jobs/results/']", "attr": "href" }
+        },
+        "pages": {
+          "url_template": "https://www.google.com/about/careers/applications/jobs/results/?location=India&q=software%20engineer&page={page}",
+          "start": 1,
+          "count": 4
+        },
+        "detail": { "description_selector": "div.DkhPwc" }
+      },
+      "_verified": "20 jobs per page, India-filtered",
+      "enabled": true
+    },
+    {
+      "name": "Uber",
+      "careers_url": "https://jobs.uber.com/en/jobs/",
+      "adapter": "oracle_ce",
+      "_note": "Left its own loadSearchJobsResults API (which now 404s) for Oracle Recruiting on pod iaziqy.fa.ocs.oraclecloud.com. The old entry returned 18 titles with no descriptions; this returns the whole board with them.",
+      "params": {
+        "host": "iaziqy.fa.ocs.oraclecloud.com",
+        "site_number": "CX_1",
+        "base_url": "https://iaziqy.fa.ocs.oraclecloud.com/hcmUI/CandidateExperience",
+        "page_size": 200,
+        "max_jobs": 600
+      },
+      "_verified": "516 jobs",
+      "enabled": true
+    },
+
+    {
+      "name": "Microsoft",
+      "careers_url": "https://jobs.careers.microsoft.com/global/en/search",
+      "adapter": "custom_json",
+      "_status": "BLOCKED - the API at gcsservices.careers.microsoft.com/search/api/v1/search resolves via Azure Front Door but every request fails to connect (curl exit before response, with and without browser headers). Likely TLS-fingerprint filtering.",
+      "params": { "url": "", "fields": {} },
+      "enabled": false
+    },
+    {
+      "name": "Apple",
+      "careers_url": "https://jobs.apple.com/en-in/search",
+      "adapter": "custom_json",
+      "_status": "BLOCKED - jobs.apple.com/api/role/search answers 301 to apple.com/pagenotfound for non-browser callers. Needs a real session and CSRF token.",
+      "params": { "url": "", "fields": {} },
+      "enabled": false
+    },
+    {
+      "name": "IBM",
+      "careers_url": "https://www.ibm.com/careers/search",
+      "adapter": "custom_json",
+      "_status": "BLOCKED - list renders client-side, and careers.ibm.com plus ibmglobal.avature.net answer 202 with an empty body (Akamai bot protection). Needs a real browser session.",
+      "params": { "url": "", "fields": {} },
+      "enabled": false
+    },
+    {
+      "name": "Goldman Sachs",
+      "careers_url": "https://higher.gs.com/roles",
+      "adapter": "custom_json",
+      "_status": "BLOCKED - higher.gs.com serves no job data or API reference in its HTML; the listing is fetched by an authenticated client-side call. Not on any public ATS.",
+      "params": { "url": "", "fields": {} },
+      "enabled": false
+    },
+    {
+      "name": "Intuit",
+      "careers_url": "https://jobs.intuit.com/search-jobs",
+      "adapter": "custom_html",
+      "_note": "Radancy/TalentBrew board. Its /search-jobs/results endpoint answers JSON with an HTML fragment inside, which neither generic adapter can read, so this reads the server-rendered page instead: 15 jobs a page, 31 pages covers the whole board. data-job-id is unique per posting, unlike the repeated req ids on the li.",
+      "params": {
+        "url": "https://jobs.intuit.com/search-jobs",
+        "item_selector": "#search-results-list li",
+        "base_url": "https://jobs.intuit.com",
+        "fields": {
+          "title": { "selector": "h2" },
+          "location": { "selector": "span.job-location" },
+          "job_url": { "selector": "a.sr-item", "attr": "href" },
+          "external_id": { "selector": "a.sr-item", "attr": "data-job-id" }
+        },
+        "pages": {
+          "url_template": "https://jobs.intuit.com/search-jobs?p={page}",
+          "start": 1,
+          "count": 31
+        },
+        "detail": { "description_selector": "section.job-description" }
+      },
+      "_verified": "451 jobs",
+      "enabled": true
+    },
+    {
+      "name": "D. E. Shaw",
+      "careers_url": "https://www.deshaw.com/careers",
+      "adapter": "custom_json",
+      "_status": "BLOCKED - bespoke portal with no ATS marker. Note: the lever board 'dexterity' is a Redwood City robotics company, NOT D. E. Shaw - do not use it.",
+      "params": { "url": "", "fields": {} },
+      "enabled": false
+    },
+    {
+      "name": "Qualcomm",
+      "careers_url": "https://careers.qualcomm.com/careers",
+      "adapter": "eightfold",
+      "_status": "BLOCKED - Eightfold tenant exists but the jobs API answers 403 {\"message\": \"Not authorized for PCSX\"}, so the public board is gated. The adapter config below is correct and only needs the gate lifted.",
+      "params": { "host": "qualcomm.eightfold.ai", "domain": "qualcomm.com" },
+      "enabled": false
+    }
+  ]
+}

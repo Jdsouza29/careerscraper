@@ -1,0 +1,311 @@
+{
+  "headers": {},
+  "proxies": {},
+  "timeout": 20,
+  "retries": 3,
+  "min_request_interval": 0.4,
+  "db_path": "./data/jobs_sde.db",
+  "out_dir": "./out/sde",
+  "locations": [
+    "bengaluru",
+    "bangalore",
+    "karnataka",
+    "india",
+    "remote"
+  ],
+  "location_exclude": [],
+  "keep_unknown_location": true,
+  "title_include": [
+    "sde 1",
+    "sde-1",
+    "sde1",
+    "sde i",
+    "sde 2",
+    "sde-2",
+    "sde2",
+    "sde ii",
+    "software development engineer i",
+    "software development engineer ii",
+    "software development engineer 1",
+    "software development engineer 2",
+    "software engineer i",
+    "software engineer ii",
+    "software engineer 1",
+    "software engineer 2",
+    "software engineer - 1",
+    "software engineer - 2",
+    "software engineer l1",
+    "software engineer l2",
+    "engineer ii",
+    "engineer 2",
+    "associate software engineer",
+    "software engineer (early career)"
+  ],
+  "title_exclude": [
+    "senior",
+    "sr.",
+    "sr ",
+    "snr",
+    "lead",
+    "staff",
+    "principal",
+    "architect",
+    "manager",
+    "director",
+    "head of",
+    "vp ",
+    "chief",
+    "president",
+    "distinguished",
+    "smts",
+    "fellow",
+    "intern",
+    "internship",
+    "trainee",
+    "fresher",
+    "engineer iii",
+    "engineer 3",
+    "engineer - 3",
+    "engineer-3",
+    "engineer 4",
+    "engineer - 4",
+    "engineer-4",
+    "engineer 5",
+    "engineer - 5",
+    "engineer-5",
+    "developer iii",
+    "developer 3",
+    "developer - 3",
+    "sde 3",
+    "sde-3",
+    "sde iii",
+    "sde 4",
+    "sde-4",
+    "sde iv",
+    "level 3",
+    "level 4",
+    "l3 ",
+    "l4 ",
+    "l5 ",
+    "qa ",
+    "qa/",
+    "qa automation",
+    "in test",
+    "sdet",
+    "test engineer",
+    "automation test",
+    "quality engineer",
+    "quality assurance",
+    "support engineer",
+    "frontend",
+    "front end",
+    "front-end",
+    "react",
+    "angular",
+    "javascript",
+    "ui developer",
+    "ui/ux",
+    "web developer",
+    "android",
+    "ios ",
+    "mobile",
+    "flutter",
+    "game",
+    "embedded",
+    "firmware",
+    "verilog",
+    "vlsi",
+    "data scientist",
+    "machine learning",
+    "ml engineer",
+    "ai engineer",
+    "salesforce",
+    "sap",
+    "d365",
+    "dynamics 365",
+    ".net",
+    "dotnet",
+    "php",
+    "ruby",
+    "wordpress",
+    "drupal",
+    "sharepoint",
+    "mainframe",
+    "cobol",
+    "technical writer",
+    "business analyst",
+    "scrum",
+    "product manager"
+  ],
+  "company_exclude": [
+    "Aurva"
+  ],
+  "desc_words": [
+    "unpaid",
+    "commission only",
+    "no stipend",
+    "security clearance"
+  ],
+  "max_min_experience": 2,
+  "min_min_experience": null,
+  "drop_if_experience_unknown": false,
+  "require_any_skill": [],
+  "drop_if_no_skills_found": false,
+  "keep_missing_description": true,
+  "languages": [],
+  "skills": {
+    "Go": [
+      "golang",
+      "go lang",
+      "goroutine",
+      "go programming",
+      "cs:re:\\bGo\\b(?=\\s+(?:developer|engineer|backend|service|services|code|codebase|module|modules|routines|ecosystem|stdlib|programming))",
+      "cs:re:(?:in|with|using|write|writing|prefer|preferably|experience (?:in|with))\\s+Go\\b"
+    ],
+    "Python": [
+      "python"
+    ],
+    "Java": [
+      "java"
+    ],
+    "Kotlin": [
+      "kotlin"
+    ],
+    "Rust": [
+      "rust"
+    ],
+    "C++": [
+      "c++",
+      "cpp"
+    ],
+    "C": [
+      "cs:re:(?<![\\w+#.])C(?=\\s*(?:/|,|\\sor\\s)\\s*(?:C\\+\\+|Rust))"
+    ],
+    "TypeScript": [
+      "typescript"
+    ],
+    "JavaScript": [
+      "javascript"
+    ],
+    "Node.js": [
+      "node.js",
+      "nodejs"
+    ],
+    "SQL": [
+      "sql"
+    ],
+    "PostgreSQL": [
+      "postgresql",
+      "postgres"
+    ],
+    "MySQL": [
+      "mysql"
+    ],
+    "MongoDB": [
+      "mongodb",
+      "mongo"
+    ],
+    "Redis": [
+      "redis"
+    ],
+    "Elasticsearch": [
+      "elasticsearch",
+      "opensearch"
+    ],
+    "Kafka": [
+      "kafka"
+    ],
+    "gRPC": [
+      "grpc"
+    ],
+    "GraphQL": [
+      "graphql"
+    ],
+    "REST": [
+      "rest api",
+      "restful",
+      "rest apis"
+    ],
+    "Microservices": [
+      "microservice",
+      "microservices"
+    ],
+    "Distributed Systems": [
+      "distributed system",
+      "distributed systems"
+    ],
+    "Kubernetes": [
+      "kubernetes",
+      "k8s",
+      "eks",
+      "gke",
+      "aks"
+    ],
+    "Docker": [
+      "docker",
+      "containerization",
+      "containers"
+    ],
+    "Terraform": [
+      "terraform"
+    ],
+    "AWS": [
+      "aws",
+      "amazon web services"
+    ],
+    "GCP": [
+      "gcp",
+      "google cloud"
+    ],
+    "Azure": [
+      "azure"
+    ],
+    "Linux": [
+      "linux",
+      "unix"
+    ],
+    "CI/CD": [
+      "ci/cd",
+      "cicd",
+      "continuous integration",
+      "continuous delivery"
+    ],
+    "Git": [
+      "git",
+      "github",
+      "gitlab"
+    ],
+    "Observability": [
+      "observability",
+      "prometheus",
+      "grafana",
+      "opentelemetry",
+      "datadog"
+    ],
+    "System Design": [
+      "system design",
+      "systems design",
+      "high availability",
+      "scalability"
+    ],
+    "Networking": [
+      "tcp/ip",
+      "networking",
+      "http/2",
+      "dns"
+    ],
+    "Spark": [
+      "spark"
+    ],
+    "Airflow": [
+      "airflow"
+    ],
+    "Security": [
+      "appsec",
+      "application security",
+      "cryptography",
+      "oauth",
+      "threat model"
+    ]
+  }
+}
