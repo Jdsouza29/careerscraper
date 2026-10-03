@@ -1321,6 +1321,206 @@
       "_status": "BLOCKED - Eightfold tenant exists but the jobs API answers 403 {\"message\": \"Not authorized for PCSX\"}, so the public board is gated. The adapter config below is correct and only needs the gate lifted.",
       "params": { "host": "qualcomm.eightfold.ai", "domain": "qualcomm.com" },
       "enabled": false
+    },
+    {
+      "name": "Ciena",
+      "careers_url": "https://www.ciena.com/about/careers",
+      "adapter": "workday",
+      "params": {
+        "host": "ciena.wd5.myworkdayjobs.com",
+        "tenant": "ciena",
+        "site": "Careers",
+        "max_jobs": 200
+      },
+      "_verified": "147 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Marvell",
+      "careers_url": "https://www.marvell.com/company/careers.html",
+      "adapter": "workday",
+      "params": {
+        "host": "marvell.wd1.myworkdayjobs.com",
+        "tenant": "marvell",
+        "site": "marvellcareers",
+        "max_jobs": 300
+      },
+      "_verified": "276 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Equinix",
+      "careers_url": "https://careers.equinix.com/",
+      "adapter": "workday",
+      "params": {
+        "host": "equinix.wd1.myworkdayjobs.com",
+        "tenant": "equinix",
+        "site": "External",
+        "max_jobs": 300
+      },
+      "_verified": "267 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Viavi Solutions",
+      "careers_url": "https://careers.viavisolutions.com/",
+      "adapter": "workday",
+      "params": {
+        "host": "viavisolutions.wd1.myworkdayjobs.com",
+        "tenant": "viavisolutions",
+        "site": "Careers",
+        "max_jobs": 200
+      },
+      "_verified": "149 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Calix",
+      "careers_url": "https://www.calix.com/careers.html",
+      "adapter": "workday",
+      "params": {
+        "host": "calix.wd1.myworkdayjobs.com",
+        "tenant": "calix",
+        "site": "External",
+        "max_jobs": 100
+      },
+      "_verified": "13 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Adtran",
+      "careers_url": "https://www.adtran.com/en/about-us/careers",
+      "adapter": "workday",
+      "_note": "Tenant and site are both the bare lowercase 'adtran'; the usual External/Careers site names 404 here.",
+      "params": {
+        "host": "adtran.wd3.myworkdayjobs.com",
+        "tenant": "adtran",
+        "site": "adtran",
+        "max_jobs": 150
+      },
+      "_verified": "92 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Extreme Networks",
+      "careers_url": "https://www.extremenetworks.com/about-extreme-networks/careers",
+      "adapter": "lever",
+      "params": { "board_token": "extremenetworks" },
+      "_verified": "136 jobs",
+      "enabled": true
+    },
+    {
+      "name": "NETGEAR",
+      "careers_url": "https://www.netgear.com/about/careers/",
+      "adapter": "ashby",
+      "params": { "board_token": "netgear" },
+      "_verified": "47 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Ubiquiti",
+      "careers_url": "https://www.ui.com/careers",
+      "adapter": "greenhouse",
+      "params": { "board_token": "ubiquiti" },
+      "_verified": "180 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Cato Networks",
+      "careers_url": "https://www.catonetworks.com/careers/",
+      "adapter": "greenhouse",
+      "params": { "board_token": "catonetworks" },
+      "_verified": "92 jobs",
+      "enabled": true
+    },
+    {
+      "name": "SolarWinds",
+      "careers_url": "https://jobs.solarwinds.com/",
+      "adapter": "greenhouse",
+      "_note": "A SmartRecruiters board under the same name exists but carries a single stale posting; the greenhouse board is the live one.",
+      "params": { "board_token": "solarwinds" },
+      "_verified": "58 jobs",
+      "enabled": true
+    },
+    {
+      "name": "SonicWall",
+      "careers_url": "https://www.sonicwall.com/careers",
+      "adapter": "greenhouse",
+      "params": { "board_token": "sonicwall" },
+      "_verified": "45 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Cambium Networks",
+      "careers_url": "https://www.cambiumnetworks.com/careers/",
+      "adapter": "lever",
+      "_note": "Board is real but near-empty - one posting at the time of verification.",
+      "params": { "board_token": "cambiumnetworks" },
+      "_verified": "1 job",
+      "enabled": true
+    },
+    {
+      "name": "Megaport",
+      "careers_url": "https://www.megaport.com/careers/",
+      "adapter": "lever",
+      "params": { "board_token": "megaport" },
+      "_verified": "47 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Infoblox",
+      "careers_url": "https://www.infoblox.com/company/careers/",
+      "adapter": "oracle_ce",
+      "_note": "Oracle Fusion pod 'efpv' on us6; the careers page only links it from the apply button.",
+      "params": {
+        "host": "efpv.fa.us6.oraclecloud.com",
+        "site_number": "CX_1",
+        "base_url": "https://efpv.fa.us6.oraclecloud.com/hcmUI/CandidateExperience",
+        "page_size": 200,
+        "max_jobs": 300
+      },
+      "_verified": "86 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Nokia",
+      "careers_url": "https://www.nokia.com/careers/",
+      "adapter": "custom_json",
+      "_status": "BLOCKED - careers page ships no ATS marker and no Workday tenant/site combination answered. Infinera now redirects here, so Nokia covers that brand too.",
+      "params": { "url": "", "fields": {} },
+      "enabled": false
+    },
+    {
+      "name": "Akamai",
+      "careers_url": "https://www.akamai.com/careers/open-positions",
+      "adapter": "custom_json",
+      "_status": "BLOCKED - listings render client-side with no ATS marker in the HTML; no Workday tenant/site combination answered.",
+      "params": { "url": "", "fields": {} },
+      "enabled": false
+    },
+    {
+      "name": "Check Point",
+      "careers_url": "https://careers.checkpoint.com/",
+      "adapter": "custom_json",
+      "_status": "BLOCKED - bespoke portal, no ATS marker in the HTML and no Workday tenant/site combination answered.",
+      "params": { "url": "", "fields": {} },
+      "enabled": false
+    },
+    {
+      "name": "Gigamon",
+      "careers_url": "https://www.gigamon.com/company/careers.html",
+      "adapter": "custom_json",
+      "_status": "BLOCKED - runs on Jobvite (jobs.jobvite.com/gigamon) and there is no jobvite adapter yet.",
+      "params": { "url": "", "fields": {} },
+      "enabled": false
+    },
+    {
+      "name": "Keysight",
+      "careers_url": "https://jobs.keysight.com/",
+      "adapter": "custom_json",
+      "_status": "BLOCKED - iCIMS backend; no icims adapter yet. Same for Riverbed (careers-riverbed.icims.com) and CommScope (SuccessFactors).",
+      "params": { "url": "", "fields": {} },
+      "enabled": false
     }
   ]
 }
