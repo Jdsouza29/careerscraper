@@ -1521,6 +1521,482 @@
       "_status": "BLOCKED - iCIMS backend; no icims adapter yet. Same for Riverbed (careers-riverbed.icims.com) and CommScope (SuccessFactors).",
       "params": { "url": "", "fields": {} },
       "enabled": false
+    },
+    {
+      "name": "Apiiro",
+      "careers_url": "https://apiiro.com/careers/",
+      "adapter": "greenhouse",
+      "params": { "board_token": "apiiro" },
+      "_verified": "6 jobs",
+      "enabled": true
+    },
+    {
+      "name": "BeyondTrust",
+      "careers_url": "https://www.beyondtrust.com/company/careers",
+      "adapter": "greenhouse",
+      "params": { "board_token": "beyondtrust" },
+      "_verified": "47 jobs",
+      "enabled": true
+    },
+    {
+      "name": "BigID",
+      "careers_url": "https://bigid.com/company/careers/",
+      "adapter": "greenhouse",
+      "params": { "board_token": "bigid" },
+      "_verified": "6 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Bishop Fox",
+      "careers_url": "https://bishopfox.com/careers",
+      "adapter": "greenhouse",
+      "params": { "board_token": "bishopfox" },
+      "_verified": "7 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Bitwarden",
+      "careers_url": "https://bitwarden.com/careers/",
+      "adapter": "greenhouse",
+      "params": { "board_token": "bitwarden" },
+      "_verified": "34 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Bugcrowd",
+      "careers_url": "https://www.bugcrowd.com/about/careers/",
+      "adapter": "greenhouse",
+      "params": { "board_token": "bugcrowd" },
+      "_verified": "8 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Censys",
+      "careers_url": "https://censys.com/careers/",
+      "adapter": "greenhouse",
+      "params": { "board_token": "censys" },
+      "_verified": "29 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Coalition",
+      "careers_url": "https://www.coalitioninc.com/careers",
+      "adapter": "greenhouse",
+      "params": { "board_token": "coalition" },
+      "_verified": "42 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Corelight",
+      "careers_url": "https://corelight.com/company/careers",
+      "adapter": "greenhouse",
+      "_note": "Greenhouse board reports the generic name 'Job Board'; the token and postings are Corelight's.",
+      "params": { "board_token": "corelight" },
+      "_verified": "10 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Cymulate",
+      "careers_url": "https://cymulate.com/careers/",
+      "adapter": "greenhouse",
+      "params": { "board_token": "cymulate" },
+      "_verified": "15 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Descope",
+      "careers_url": "https://www.descope.com/careers",
+      "adapter": "greenhouse",
+      "params": { "board_token": "descope" },
+      "_verified": "5 jobs",
+      "enabled": true
+    },
+    {
+      "name": "DigiCert",
+      "careers_url": "https://www.digicert.com/careers",
+      "adapter": "greenhouse",
+      "params": { "board_token": "digicert" },
+      "_verified": "53 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Dragos",
+      "careers_url": "https://www.dragos.com/careers/",
+      "adapter": "greenhouse",
+      "params": { "board_token": "dragos" },
+      "_verified": "55 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Dropzone AI",
+      "careers_url": "https://www.dropzone.ai/careers",
+      "adapter": "greenhouse",
+      "params": { "board_token": "dropzoneai" },
+      "_verified": "11 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Endor Labs",
+      "careers_url": "https://www.endorlabs.com/careers",
+      "adapter": "greenhouse",
+      "params": { "board_token": "endorlabs" },
+      "_verified": "29 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Expel",
+      "careers_url": "https://expel.com/careers/",
+      "adapter": "greenhouse",
+      "params": { "board_token": "expel" },
+      "_verified": "9 jobs",
+      "enabled": true
+    },
+    {
+      "name": "GreyNoise",
+      "careers_url": "https://www.greynoise.io/careers",
+      "adapter": "greenhouse",
+      "_note": "Greenhouse token is 'greynoiseintelligence'; the short 'greynoise' is not a board.",
+      "params": { "board_token": "greynoiseintelligence" },
+      "_verified": "1 job",
+      "enabled": true
+    },
+    {
+      "name": "Halcyon",
+      "careers_url": "https://www.halcyon.ai/careers",
+      "adapter": "greenhouse",
+      "params": { "board_token": "halcyon" },
+      "_verified": "9 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Huntress",
+      "careers_url": "https://www.huntress.com/careers",
+      "adapter": "greenhouse",
+      "params": { "board_token": "huntress" },
+      "_verified": "39 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Island",
+      "careers_url": "https://www.island.io/careers",
+      "adapter": "greenhouse",
+      "params": { "board_token": "island" },
+      "_verified": "6 jobs",
+      "enabled": true
+    },
+    {
+      "name": "JFrog",
+      "careers_url": "https://jfrog.com/careers/",
+      "adapter": "greenhouse",
+      "params": { "board_token": "jfrog" },
+      "_verified": "62 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Jamf",
+      "careers_url": "https://www.jamf.com/about/careers/",
+      "adapter": "greenhouse",
+      "params": { "board_token": "jamf" },
+      "_verified": "27 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Keeper Security",
+      "careers_url": "https://www.keepersecurity.com/careers.html",
+      "adapter": "greenhouse",
+      "params": { "board_token": "keepersecurity" },
+      "_verified": "89 jobs",
+      "enabled": true
+    },
+    {
+      "name": "KnowBe4",
+      "careers_url": "https://www.knowbe4.com/careers",
+      "adapter": "greenhouse",
+      "params": { "board_token": "knowbe4" },
+      "_verified": "63 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Lookout",
+      "careers_url": "https://www.lookout.com/careers",
+      "adapter": "greenhouse",
+      "params": { "board_token": "lookout" },
+      "_verified": "4 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Nozomi Networks",
+      "careers_url": "https://www.nozominetworks.com/company/careers",
+      "adapter": "greenhouse",
+      "params": { "board_token": "nozominetworks" },
+      "_verified": "21 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Obsidian Security",
+      "careers_url": "https://www.obsidiansecurity.com/careers",
+      "adapter": "greenhouse",
+      "params": { "board_token": "obsidiansecurity" },
+      "_verified": "17 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Ping Identity",
+      "careers_url": "https://www.pingidentity.com/en/company/careers.html",
+      "adapter": "greenhouse",
+      "params": { "board_token": "pingidentity" },
+      "_verified": "65 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Recorded Future",
+      "careers_url": "https://www.recordedfuture.com/careers",
+      "adapter": "greenhouse",
+      "params": { "board_token": "recordedfuture" },
+      "_verified": "50 jobs",
+      "enabled": true
+    },
+    {
+      "name": "SafeBreach",
+      "careers_url": "https://www.safebreach.com/careers/",
+      "adapter": "greenhouse",
+      "params": { "board_token": "safebreach" },
+      "_verified": "8 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Salt Security",
+      "careers_url": "https://salt.security/careers",
+      "adapter": "greenhouse",
+      "params": { "board_token": "saltsecurity" },
+      "_verified": "13 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Sweet Security",
+      "careers_url": "https://www.sweet.security/careers",
+      "adapter": "greenhouse",
+      "params": { "board_token": "sweetsecurity" },
+      "_verified": "2 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Synack",
+      "careers_url": "https://www.synack.com/careers/",
+      "adapter": "greenhouse",
+      "params": { "board_token": "synack" },
+      "_verified": "11 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Tanium",
+      "careers_url": "https://www.tanium.com/careers/",
+      "adapter": "greenhouse",
+      "params": { "board_token": "tanium" },
+      "_verified": "55 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Tines",
+      "careers_url": "https://www.tines.com/careers/",
+      "adapter": "greenhouse",
+      "params": { "board_token": "tines" },
+      "_verified": "26 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Torq",
+      "careers_url": "https://torq.io/careers/",
+      "adapter": "greenhouse",
+      "params": { "board_token": "torq" },
+      "_verified": "26 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Transmit Security",
+      "careers_url": "https://www.transmitsecurity.com/about/careers",
+      "adapter": "greenhouse",
+      "params": { "board_token": "transmitsecurity" },
+      "_verified": "15 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Veracode",
+      "careers_url": "https://www.veracode.com/careers/",
+      "adapter": "greenhouse",
+      "params": { "board_token": "veracode" },
+      "_verified": "11 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Yubico",
+      "careers_url": "https://www.yubico.com/careers/",
+      "adapter": "greenhouse",
+      "params": { "board_token": "yubico" },
+      "_verified": "17 jobs",
+      "enabled": true
+    },
+    {
+      "name": "1Password",
+      "careers_url": "https://1password.com/careers",
+      "adapter": "ashby",
+      "params": { "board_token": "1password" },
+      "_verified": "69 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Delinea",
+      "careers_url": "https://delinea.com/careers",
+      "adapter": "ashby",
+      "params": { "board_token": "delinea" },
+      "_verified": "77 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Horizon3.ai",
+      "careers_url": "https://horizon3.ai/careers/",
+      "adapter": "ashby",
+      "params": { "board_token": "horizon3ai" },
+      "_verified": "110 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Illumio",
+      "careers_url": "https://www.illumio.com/company/careers",
+      "adapter": "ashby",
+      "params": { "board_token": "illumio" },
+      "_verified": "65 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Menlo Security",
+      "careers_url": "https://www.menlosecurity.com/company/careers",
+      "adapter": "ashby",
+      "params": { "board_token": "menlosecurity" },
+      "_verified": "28 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Material Security",
+      "careers_url": "https://material.security/careers",
+      "adapter": "ashby",
+      "params": { "board_token": "materialsecurity" },
+      "_verified": "3 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Nudge Security",
+      "careers_url": "https://www.nudgesecurity.com/careers",
+      "adapter": "ashby",
+      "params": { "board_token": "nudgesecurity" },
+      "_verified": "3 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Opal Security",
+      "careers_url": "https://opal.dev/careers",
+      "adapter": "ashby",
+      "_note": "Ashby token is the bare 'opal'; the board is Opal Security (identity governance), not the camera company of the same name.",
+      "params": { "board_token": "opal" },
+      "_verified": "20 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Semgrep",
+      "careers_url": "https://semgrep.dev/careers",
+      "adapter": "ashby",
+      "params": { "board_token": "semgrep" },
+      "_verified": "13 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Snyk",
+      "careers_url": "https://snyk.io/careers/",
+      "adapter": "ashby",
+      "params": { "board_token": "snyk" },
+      "_verified": "13 jobs",
+      "enabled": true
+    },
+    {
+      "name": "HackerOne",
+      "careers_url": "https://www.hackerone.com/careers",
+      "adapter": "ashby",
+      "params": { "board_token": "hackerone" },
+      "_verified": "14 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Teleport",
+      "careers_url": "https://goteleport.com/careers/",
+      "adapter": "ashby",
+      "_note": "Ashby token is 'goteleport', not 'teleport'.",
+      "params": { "board_token": "goteleport" },
+      "_verified": "21 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Immuta",
+      "careers_url": "https://www.immuta.com/careers/",
+      "adapter": "lever",
+      "params": { "board_token": "immuta" },
+      "_verified": "12 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Saviynt",
+      "careers_url": "https://saviynt.com/careers",
+      "adapter": "lever",
+      "params": { "board_token": "saviynt" },
+      "_verified": "71 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Armis",
+      "careers_url": "https://www.armis.com/careers/",
+      "adapter": "smartrecruiters",
+      "_note": "SmartRecruiters board is sparse - most Armis roles are posted elsewhere, so treat this as a partial view.",
+      "params": { "company_token": "armis", "max_jobs": 300 },
+      "_verified": "2 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Trend Micro",
+      "careers_url": "https://careers.trendmicro.com/",
+      "adapter": "workday",
+      "params": {
+        "host": "trendmicro.wd3.myworkdayjobs.com",
+        "tenant": "trendmicro",
+        "site": "External",
+        "max_jobs": 300
+      },
+      "_verified": "218 jobs",
+      "enabled": true
+    },
+    {
+      "name": "SailPoint",
+      "careers_url": "https://www.sailpoint.com/company/careers",
+      "adapter": "workday",
+      "params": {
+        "host": "sailpoint.wd1.myworkdayjobs.com",
+        "tenant": "sailpoint",
+        "site": "SailPoint",
+        "max_jobs": 200
+      },
+      "_verified": "114 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Arctic Wolf",
+      "careers_url": "https://arcticwolf.com/careers/",
+      "adapter": "workday",
+      "params": {
+        "host": "arcticwolf.wd1.myworkdayjobs.com",
+        "tenant": "arcticwolf",
+        "site": "External",
+        "max_jobs": 200
+      },
+      "_verified": "119 jobs",
+      "enabled": true
     }
   ]
 }
