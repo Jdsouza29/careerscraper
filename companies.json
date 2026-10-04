@@ -1997,6 +1997,75 @@
       },
       "_verified": "119 jobs",
       "enabled": true
+    },
+    {
+      "name": "Vectra AI",
+      "careers_url": "https://www.vectra.ai/about/careers",
+      "adapter": "greenhouse",
+      "_note": "Board token is the old company name 'vectranetworks'; 'vectra' is not a board.",
+      "params": { "board_token": "vectranetworks" },
+      "_verified": "28 jobs",
+      "enabled": true
+    },
+    {
+      "name": "ExtraHop",
+      "careers_url": "https://www.extrahop.com/careers",
+      "adapter": "greenhouse",
+      "_note": "Board token is 'extrahopnetworks', not 'extrahop'.",
+      "params": { "board_token": "extrahopnetworks" },
+      "_verified": "22 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Darktrace",
+      "careers_url": "https://www.darktrace.com/careers",
+      "adapter": "workday",
+      "_note": "The Workday site name is misspelled on Darktrace's side - 'DarktaceExternal', no 'r'. Spelling it correctly 404s.",
+      "params": {
+        "host": "darktrace.wd3.myworkdayjobs.com",
+        "tenant": "darktrace",
+        "site": "DarktaceExternal",
+        "max_jobs": 150
+      },
+      "_verified": "76 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Entrust",
+      "careers_url": "https://www.entrust.com/careers",
+      "adapter": "workday",
+      "params": {
+        "host": "entrust.wd1.myworkdayjobs.com",
+        "tenant": "entrust",
+        "site": "entrustcareers",
+        "max_jobs": 150
+      },
+      "_verified": "84 jobs",
+      "enabled": true
+    },
+    {
+      "name": "Exabeam",
+      "careers_url": "https://www.exabeam.com/company/careers/",
+      "adapter": "custom_json",
+      "_status": "BLOCKED - runs on Jobvite (jobs.jobvite.com/exabeam) and there is no jobvite adapter yet. Same backend as Gigamon.",
+      "params": { "url": "", "fields": {} },
+      "enabled": false
+    },
+    {
+      "name": "Cyera",
+      "careers_url": "https://www.cyera.com/careers",
+      "adapter": "custom_json",
+      "_status": "BLOCKED - runs on Comeet (comeet.com/jobs/cyera/17.008) and there is no comeet adapter yet.",
+      "params": { "url": "", "fields": {} },
+      "enabled": false
+    },
+    {
+      "name": "Aqua Security",
+      "careers_url": "https://www.aquasec.com/careers/",
+      "adapter": "custom_json",
+      "_status": "BLOCKED - runs on Comeet, same as Cyera; needs a comeet adapter.",
+      "params": { "url": "", "fields": {} },
+      "enabled": false
     }
   ]
 }
