@@ -2,10 +2,12 @@
 
 from adapters.ashby import AshbyAdapter
 from adapters.base import Adapter, AdapterError, make_job
+from adapters.comeet import ComeetAdapter
 from adapters.custom_html import CustomHtmlAdapter
 from adapters.custom_json import CustomJsonAdapter
 from adapters.eightfold import EightfoldAdapter
 from adapters.greenhouse import GreenhouseAdapter
+from adapters.jobvite import JobviteAdapter
 from adapters.lever import LeverAdapter
 from adapters.oracle_ce import OracleCeAdapter
 from adapters.smartrecruiters import SmartRecruitersAdapter
@@ -21,6 +23,8 @@ ADAPTERS = {
         SmartRecruitersAdapter,
         EightfoldAdapter,
         OracleCeAdapter,
+        ComeetAdapter,
+        JobviteAdapter,
         CustomJsonAdapter,
         CustomHtmlAdapter,
     )

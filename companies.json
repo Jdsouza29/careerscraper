@@ -1,5 +1,5 @@
 {
-  "_readme": "Curated registry. Every enabled entry was probed against the live backend and returned real jobs before being added (count in _verified). Ask Claude to 'add <company>' and it will inspect the careers page, identify the backend, verify it returns jobs, and append a working entry. adapter is one of: greenhouse, lever, ashby, workday, smartrecruiters, eightfold, oracle_ce, custom_json, custom_html.",
+  "_readme": "Curated registry. Every enabled entry was probed against the live backend and returned real jobs before being added (count in _verified). Ask Claude to 'add <company>' and it will inspect the careers page, identify the backend, verify it returns jobs, and append a working entry. adapter is one of: greenhouse, lever, ashby, workday, smartrecruiters, eightfold, oracle_ce, comeet, jobvite, custom_json, custom_html.",
 
   "companies": [
     {
@@ -1509,10 +1509,11 @@
     {
       "name": "Gigamon",
       "careers_url": "https://www.gigamon.com/company/careers.html",
-      "adapter": "custom_json",
-      "_status": "BLOCKED - runs on Jobvite (jobs.jobvite.com/gigamon) and there is no jobvite adapter yet.",
-      "params": { "url": "", "fields": {} },
-      "enabled": false
+      "adapter": "jobvite",
+      "_note": "Serves the table variant of the jobvite board, which carries a location but no department.",
+      "params": { "company_token": "gigamon" },
+      "_verified": "23 jobs",
+      "enabled": true
     },
     {
       "name": "Keysight",
@@ -2046,26 +2047,28 @@
     {
       "name": "Exabeam",
       "careers_url": "https://www.exabeam.com/company/careers/",
-      "adapter": "custom_json",
-      "_status": "BLOCKED - runs on Jobvite (jobs.jobvite.com/exabeam) and there is no jobvite adapter yet. Same backend as Gigamon.",
-      "params": { "url": "", "fields": {} },
-      "enabled": false
+      "adapter": "jobvite",
+      "_note": "Serves the card variant of the jobvite board, which carries a department alongside the location.",
+      "params": { "company_token": "exabeam" },
+      "_verified": "5 jobs",
+      "enabled": true
     },
     {
       "name": "Cyera",
       "careers_url": "https://www.cyera.com/careers",
-      "adapter": "custom_json",
-      "_status": "BLOCKED - runs on Comeet (comeet.com/jobs/cyera/17.008) and there is no comeet adapter yet.",
-      "params": { "url": "", "fields": {} },
-      "enabled": false
+      "adapter": "comeet",
+      "_note": "company_uid is the dotted id in every Comeet link on the careers page; the token is the read-only board token the same page passes to the API.",
+      "params": { "company_uid": "17.008", "token": "7182A90154871823783FD838C031A802378" },
+      "_verified": "251 jobs",
+      "enabled": true
     },
     {
       "name": "Aqua Security",
       "careers_url": "https://www.aquasec.com/careers/",
-      "adapter": "custom_json",
-      "_status": "BLOCKED - runs on Comeet, same as Cyera; needs a comeet adapter.",
-      "params": { "url": "", "fields": {} },
-      "enabled": false
+      "adapter": "comeet",
+      "params": { "company_uid": "91.001", "token": "191644966966644E194B3191644644" },
+      "_verified": "9 jobs",
+      "enabled": true
     }
   ]
 }

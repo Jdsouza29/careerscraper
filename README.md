@@ -248,10 +248,12 @@ stays reversible either way: if a board lists the job again, the next run reopen
 | `smartrecruiters` | `api.smartrecruiters.com/v1/companies/<token>/postings` | Detail call per job |
 | `eightfold` | `<host>/api/apply/v2/jobs?domain=<domain>` | Detail call per job |
 | `oracle_ce` | `<pod>/hcmRestApi/resources/latest/recruitingCEJobRequisitions` | Detail call per job, as sections |
+| `comeet` | `www.comeet.co/careers-api/2.0/company/<uid>/positions?token=<token>&details=true` | In list, with section titles |
+| `jobvite` | `jobs.jobvite.com/<token>/search` (server-rendered HTML) | Detail call per job |
 | `custom_json` | Any JSON API, described entirely in `params` | In list, or optional detail call |
 | `custom_html` | Server-rendered HTML + CSS selectors | Optional detail call |
 
-Because four adapters need a detail call per job, cheap filters (title, location, company)
+Because five adapters need a detail call per job, cheap filters (title, location, company)
 run **before** descriptions are fetched — typically cutting detail requests by ~90%.
 
 Enterprise Workday tenants list thousands of roles 20 at a time, so narrow them with
@@ -267,6 +269,19 @@ is a skin over `<pod>.fa.<region>.oraclecloud.com`, which the careers page HTML 
 quirks are baked into the adapter — `expand=requisitionList.secondaryLocations` is mandatory
 (without it the response reports a job count but carries no jobs), and paging lives inside
 the `finder` string with a 200-per-page cap.
+
+`comeet` takes `company_uid` and `token`, both published by the company's own careers page:
+the uid is the dotted id in every Comeet link (`comeet.com/jobs/cyera/17.008/...`) and the
+token is what that page passes to the same API. Without the token the API answers 400
+`Token is missing`; with a mismatched pair, 400 `Account uid or token are not valid`.
+`details=true` returns the description already split into its authored sections, so no
+detail call is needed.
+
+`jobvite` publishes no JSON, so the search page is parsed. Tenants get one of two
+templates and both are in the registry: a card layout carrying title, department and
+location (Exabeam), and a table layout carrying title and location only (Gigamon). The
+adapter finds the row from the title element rather than a fixed container, and reads
+`.jv-job-list-location` by position. Neither template exposes a posting date.
 
 `custom_json` covers a company that serves its own API — Atlassian is the worked example.
 Where a board splits the description across fields, map them with `sections`:
