@@ -237,6 +237,44 @@ It closes by age alone, so it only tells the truth if you scrape regularly — a
 right after a month of not running would close jobs that are still perfectly open. Closing
 stays reversible either way: if a board lists the job again, the next run reopens it.
 
+## Concurrency
+
+Companies are fetched concurrently by a thread pool (`max_workers`, default 8), but the
+rate limit is **per host**, so concurrency never aims the whole run at one backend:
+
+```json
+"max_workers": 8,
+"min_request_interval": 0.4,
+"host_request_intervals": {
+  "boards-api.greenhouse.io": 0.15,
+  "api.ashbyhq.com": 0.15,
+  "api.lever.co": 0.25
+}
+```
+
+The two halves of the registry behave very differently, which is what the design turns on:
+
+| Set | Companies | Distinct hosts | Effect of concurrency |
+|---|---|---|---|
+| detail-call adapters (`workday`, `smartrecruiters`, `eightfold`, `oracle_ce`, `jobvite`) | 46 | 38 | large - each tenant is its own host |
+| single-request boards (`greenhouse`, `ashby`, `lever`, `comeet`) | 158 | 6 | bounded by the per-host interval |
+
+Because 112 boards share `boards-api.greenhouse.io`, no number of workers makes that set
+faster than its per-host interval allows - raise `host_request_intervals` to speed it up,
+at the cost of a heavier stream at one API. The detail-call adapters are the opposite:
+they are the slow ones, and they parallelize nearly linearly, so they are queued first
+(`HEAVY_ADAPTERS` in `main.py`) to overlap them with the shared-host boards.
+
+A run is split into a parallel phase and a serial one. `fetch_company()` fetches, filters
+and parses, and touches no database - that is what runs in the workers. `persist_company()`
+does every write on the main thread, because the SQLite connection is not shared across
+threads. Known keys are preloaded in one query before the pool starts. Results print in
+registry order regardless of completion order, so output reads the same as it did when the
+run was serial.
+
+Set `"max_workers": 1` to get the old serial behaviour back, which is also the way to
+compare timings fairly.
+
 ## Adapters
 
 | Adapter | Endpoint | Descriptions |
@@ -305,12 +343,13 @@ templates/               base.html, jobs.html, job.html
 companies.json           curated company registry
 config.json              filters, skill vocabulary, paths
 adapters/                one module per backend + two config-driven generics
-core/http.py             retry, backoff, rate limiting
+core/http.py             retry, backoff, per-host rate limiting
 core/text.py             HTML → text, dotted-path lookup
 core/requirements.py     experience / skills / work mode / education parsing
 core/filters.py          cheap and deep filters, dedupe
 core/store.py            SQLite schema, new/closed tracking, CSV export
 core/favorites.py        starred jobs, in their own writable database
+tests/                   per-host throttle checks (plain python, no framework)
 ```
 
 ## Failure handling

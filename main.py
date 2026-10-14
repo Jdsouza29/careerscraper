@@ -18,6 +18,7 @@ import os
 import sys
 import time
 from collections import Counter
+from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime, timedelta
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -30,6 +31,12 @@ from core.http import HttpClient, HttpError             # noqa: E402
 HERE = os.path.dirname(os.path.abspath(__file__))
 DEFAULT_CONFIG = os.path.join(HERE, "config.json")
 DEFAULT_REGISTRY = os.path.join(HERE, "companies.json")
+
+# Adapters whose list endpoint carries no descriptions, so they spend one request per
+# job that survives the cheap filters. They dominate a run's wall-clock, and because
+# each tenant is its own host they parallelize almost perfectly - so they are queued
+# first, ahead of the single-request boards that share a handful of hosts.
+HEAVY_ADAPTERS = ("workday", "smartrecruiters", "eightfold", "oracle_ce", "jobvite")
 
 
 def resolve(path):
@@ -74,9 +81,9 @@ def select_companies(registry, wanted, include_disabled=False):
     return unique
 
 
-def scrape_company(company, http, config, conn, args):
-    """Fetch, filter and (unless dry-run) store one company. Returns a stats dict."""
-    name = company.get("name", "?")
+def fetch_company(company, http, config, args, known):
+    """Fetch, filter and parse one company. Touches no database, so it is safe to run
+    in a worker thread; `known` is the set of keys preloaded by the caller."""
     stats = Counter()
     adapter = build_adapter(company)
 
@@ -85,10 +92,6 @@ def scrape_company(company, http, config, conn, args):
     for job in listings:
         job["key"] = filters.job_key(job)
     live_keys = {job["key"] for job in listings}
-
-    known = {} if (args.dry_run or conn is None) else store.known_keys(conn, [name])
-    if conn is not None and not args.dry_run:
-        stats["reopened"] = store.touch_last_seen(conn, live_keys & set(known), _now())
 
     fresh = [job for job in listings if job["key"] not in known]
     stats["already_seen"] = stats["fetched"] - len(fresh)
@@ -123,21 +126,40 @@ def scrape_company(company, http, config, conn, args):
     stats["filtered_out"] = len(rejects)
     stats["new"] = len(keepers)
 
-    if conn is not None and not args.dry_run:
-        store.insert_jobs(conn, store.JOBS_TABLE, keepers, _now())
-        reject_jobs = [job for job, _ in rejects]
-        reasons = {job["key"]: reason for job, reason in rejects}
-        store.insert_jobs(conn, store.FILTERED_TABLE, reject_jobs, _now(), reasons)
-        if adapter.partial:
-            stats["partial"] = 1     # narrowed fetch - absence proves nothing
-        else:
-            stats["closed"] = store.mark_closed(conn, name, live_keys, _now())
+    return {
+        "stats": stats,
+        "new_jobs": keepers,
+        "rejects": rejects,
+        "live_keys": live_keys,
+        "partial": adapter.partial,
+    }
 
-    return {"stats": stats, "new_jobs": keepers, "rejects": rejects}
+
+def persist_company(conn, name, result, known, args):
+    """Write one company's result. Runs on the main thread only - the SQLite
+    connection is not shared with workers."""
+    if conn is None or args.dry_run:
+        return
+
+    stats, now = result["stats"], _now()
+    stats["reopened"] = store.touch_last_seen(conn, result["live_keys"] & known, now)
+    store.insert_jobs(conn, store.JOBS_TABLE, result["new_jobs"], now)
+    reject_jobs = [job for job, _ in result["rejects"]]
+    reasons = {job["key"]: reason for job, reason in result["rejects"]}
+    store.insert_jobs(conn, store.FILTERED_TABLE, reject_jobs, now, reasons)
+    if result["partial"]:
+        stats["partial"] = 1         # narrowed fetch - absence proves nothing
+    else:
+        stats["closed"] = store.mark_closed(conn, name, result["live_keys"], now)
 
 
 def _now():
     return datetime.now().isoformat(timespec="seconds")
+
+
+def _queue_first(company):
+    """Sort key putting the detail-call adapters at the front of the queue."""
+    return 0 if company.get("adapter") in HEAVY_ADAPTERS else 1
 
 
 def print_jobs_table(jobs):
@@ -375,6 +397,7 @@ def main(argv=None):
         timeout=config.get("timeout", 20),
         retries=config.get("retries", 3),
         min_interval=config.get("min_request_interval", 0.4),
+        host_intervals=config.get("host_request_intervals"),
     )
 
     if args.raw:
@@ -407,24 +430,44 @@ def main(argv=None):
         return 1
 
     started = time.perf_counter()
+    known = {} if (conn is None or args.dry_run) else store.known_keys(
+        conn, [company.get("name", "?") for company in companies]
+    )
+    known_keys = set(known)
+    workers = max(1, int(config.get("max_workers", 8)))
+
     results, failures = {}, {}
-    for company in companies:
-        name = company.get("name", "?")
-        print(f"\n>> {name} ({company.get('adapter')})")
-        try:
-            results[name] = scrape_company(company, http, config, conn, args)
-        except (AdapterError, HttpError) as exc:
-            failures[name] = str(exc)
-            print(f"   failed: {exc}")
-            continue
-        except Exception as exc:                       # keep one bad board from ending the run
-            failures[name] = f"{type(exc).__name__}: {exc}"
-            print(f"   failed: {type(exc).__name__}: {exc}")
-            if args.verbose:
-                import traceback
-                traceback.print_exc()
-            continue
-        print_jobs_table(results[name]["new_jobs"])
+    with ThreadPoolExecutor(max_workers=workers) as pool:
+        # Queue the detail-call adapters first: they are the long poles, and each sits
+        # on its own host, so starting them early overlaps them with the shared-host
+        # boards instead of leaving them to run on their own at the end.
+        futures = {
+            company.get("name", "?"): pool.submit(
+                fetch_company, company, http, config, args, known_keys
+            )
+            for company in sorted(companies, key=_queue_first)
+        }
+
+        # Report in registry order regardless of completion order, so a run reads the
+        # same way it did when it was serial.
+        for company in companies:
+            name = company.get("name", "?")
+            print(f"\n>> {name} ({company.get('adapter')})")
+            try:
+                results[name] = futures[name].result()
+                persist_company(conn, name, results[name], known_keys, args)
+            except (AdapterError, HttpError) as exc:
+                failures[name] = str(exc)
+                print(f"   failed: {exc}")
+                continue
+            except Exception as exc:                   # keep one bad board from ending the run
+                failures[name] = f"{type(exc).__name__}: {exc}"
+                print(f"   failed: {type(exc).__name__}: {exc}")
+                if args.verbose:
+                    import traceback
+                    traceback.print_exc()
+                continue
+            print_jobs_table(results[name]["new_jobs"])
 
     print_summary(results, failures)
     if args.verbose:

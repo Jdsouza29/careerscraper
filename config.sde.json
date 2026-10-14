@@ -4,6 +4,12 @@
   "timeout": 20,
   "retries": 3,
   "min_request_interval": 0.4,
+  "max_workers": 8,
+  "host_request_intervals": {
+    "boards-api.greenhouse.io": 0.15,
+    "api.ashbyhq.com": 0.15,
+    "api.lever.co": 0.25
+  },
   "db_path": "./data/jobs_sde.db",
   "out_dir": "./out/sde",
   "locations": [
