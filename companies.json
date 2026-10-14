@@ -1494,7 +1494,7 @@
       "name": "Akamai",
       "careers_url": "https://www.akamai.com/careers/open-positions",
       "adapter": "custom_json",
-      "_status": "BLOCKED - listings render client-side with no ATS marker in the HTML; no Workday tenant/site combination answered.",
+      "_status": "BLOCKED - Akamai's own edge WAF denies this at the edge: jobs.akamai.com and www.akamai.com/careers both answer HTTP 403 'Access Denied' from AkamaiGHost before any job data is served, and akamaicareers.inflightcloud.com now redirects there. The listings are also client-side rendered with no ATS marker. Do not try to work around the 403 - this is the one entry in the registry that is deliberately gated.",
       "params": { "url": "", "fields": {} },
       "enabled": false
     },
