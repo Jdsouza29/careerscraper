@@ -275,6 +275,17 @@ run was serial.
 Set `"max_workers": 1` to get the old serial behaviour back, which is also the way to
 compare timings fairly.
 
+Measured on the full registry (204 companies, ~26k listings, `--dry-run`):
+
+| `max_workers` | Wall clock |
+|---|---|
+| 1 | 580.1s |
+| 8 | 130.8s |
+
+Both runs found the same 260 new jobs across the same 203 companies. Totals differed by
+one listing out of 25,983 - the runs were ten minutes apart and a board changed under
+them, not a difference in what the two modes see.
+
 ## Adapters
 
 | Adapter | Endpoint | Descriptions |
